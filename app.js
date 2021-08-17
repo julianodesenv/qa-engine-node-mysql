@@ -6,8 +6,7 @@ const expressEjsLayouts = require('express-ejs-layouts');
 const methodOverride = require('method-override');
 const flash = require('connect-flash');
 const session = require('express-session');
-const passport = require('passport');
-
+const passport = require('./src/passport');
 const app = express();
 
 app.set('PORT', process.env.PORT || 9000);
