@@ -2,6 +2,19 @@ const bcrypt = require('bcrypt-nodejs');
 
 module.exports = (sequelize, DataTypes) => {
     const User = sequelize.define('User', {
+        name: {
+            type: DataTypes.STRING,
+            defaultValue: '',
+        },
+        age: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0,
+        },
+        avatar: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: '',
+        },
         username: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -18,7 +31,11 @@ module.exports = (sequelize, DataTypes) => {
         password: {
             type: DataTypes.STRING,
             allowNull: false,
-        }
+        },
+        first_access: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: true,
+        },
     });
 
     User.prototype.validatePassword = function (password) {
