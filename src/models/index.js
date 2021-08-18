@@ -24,7 +24,7 @@ Object
     .filter(model => typeof model.associate === "function")
     .forEach(model => model.associate(db));
 
-sequelize.sync({ logging: console.log });
+sequelize.sync();
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
