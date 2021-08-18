@@ -1,19 +1,25 @@
 module.exports = (sequelize, DataTypes) => {
-    const Answers = sequelize.define('answers', {
+    const Answer = sequelize.define('Answer', {
         question: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: false
         },
         answer: {
             type: DataTypes.STRING,
             allowNull: false,
-            defaultValue: '',
+            defaultValue: ''
         },
         is_annon: {
             type: DataTypes.BOOLEAN,
-            defaultValue: false,
+            defaultValue: false
         }
     });
 
-    return Answers;
+    Answer.associate = function (models) {
+        const { User } = models;
+        Answer.belongsTo(User);
+        User.hasMany(Answer);
+    }
+
+    return Answer;
 }
