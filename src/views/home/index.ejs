@@ -49,20 +49,45 @@
         <div class="row mt-2 question-box">
             <div class="card col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="card-body">
-                    <div class="profile row">
-                        <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
-                            <img src="<%= data.questionUser.avatar %>" class="img-fluid img-profile" alt="">                    
+                    <% if (data.is_annon) { %>
+                        <div class="profile row">
+                            <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
+                                <img src="https://www.highcountryconservation.org/wp-content/uploads/sites/16/2017/08/generic_image_missing-profile.jpg" class="img-fluid img-profile" alt="">                    
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-8 col-lg-8 mt-2 name-info">
+                                <a href="" class="">Annon</a>
+                            </div>  
+                            <% if (checkUserDelete(user, answerUser)) { %>              
+                                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                    <form action="/answers/<%= data.id %>?_method=DELETE" method="POST">
+                                        <button type="submit" class="btn btn-link">Delete</button>
+                                    </form>
+                                </div>                       
+                            <% } %>                                           
                         </div>
-                        <div class="col-xs-8 col-sm-8 col-md-10 col-lg-10 mt-2 name-info">
-                            <a href="" class=""><%= data.questionUser.name %></a>                    
+                    <% } else { %>
+                        <div class="profile row">
+                            <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
+                                <img src="<%= data.questionUser.avatar %>" class="img-fluid img-profile" alt="">                    
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-8 col-lg-8 mt-2 name-info">
+                                <a href="/t/<%= data.questionUser.username %>" class=""><%= data.questionUser.name %></a>
+                            </div>    
+                            <% if (checkUserDelete(user, answerUser)) { %>              
+                                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                    <form action="/answers/<%= data.id %>?_method=DELETE" method="POST">
+                                        <button type="submit" class="btn btn-link">Delete</button>
+                                    </form>
+                                </div>                       
+                            <% } %>                                     
                         </div>
-                    </div>
+                    <% } %>                    
                     <blockquote class="blockquote">
                         <p>
                             <%= data.question %>
                         </p>
                         <div class="blockquote-footer ml-2">
-                            <%= data.answer %>
+                           <%= data.answer %>
                         </div>
                     </blockquote>
                 </div>
