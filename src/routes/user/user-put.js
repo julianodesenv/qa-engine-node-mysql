@@ -4,7 +4,7 @@ module.exports = async (req, res) => {
 
     try {
         const { name, age } = req.body;
-        const obj = { name, age, first_access: false, avatar: `https://api.adorable.io/avatars/150/${req.user.username}.png` };
+        const obj = { name, age, first_access: false, avatar: `https://avatars.dicebear.com/api/male/${req.user.username}.svg` };
         const user = await User.update(obj, { where: { id: req.user.id } });
         return res.redirect(`/t/${req.user.username}`);
     } catch (err) {
